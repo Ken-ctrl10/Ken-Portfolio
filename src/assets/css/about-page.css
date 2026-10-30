@@ -1,0 +1,833 @@
+.about-section {
+  width: min(1120px, 92%);
+  margin: 1.25rem auto 6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.about-hero {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.about-kicker {
+  margin: 0;
+  font-size: 0.95rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  opacity: 0.8;
+  font-family: var(--font-body);
+  font-weight: 700;
+}
+
+.about-section .section-title {
+  margin: 0;
+  font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+  line-height: 1.15;
+  font-weight: 400;
+  color: var(--text);
+}
+
+.about-subtitle {
+  margin: 0 auto;
+  max-width: 780px;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+/* ---------------------------------------------------------------------------
+   Profile
+   Story + career snapshot merged into one block. They answer the same question,
+   so splitting them across two identically weighted cards added no information.
+   --------------------------------------------------------------------------- */
+
+.about-profile {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 1rem;
+  box-shadow: 0 10px 26px var(--shadow);
+}
+
+.about-profile-main {
+  display: flex;
+  align-items: stretch;
+  gap: 1.25rem;
+}
+
+.about-photo-flip {
+  width: 420px;
+  min-width: 360px;
+  perspective: 1000px;
+}
+
+.about-photo-flip-inner {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  transform-style: preserve-3d;
+  transition: transform 0.8s ease;
+  border-radius: 14px;
+}
+
+.about-photo-flip:hover .about-photo-flip-inner {
+  transform: rotateY(180deg);
+}
+
+.about-photo-front,
+.about-photo-back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 8px 18px var(--shadow);
+  border: 1px solid var(--border);
+  background: var(--surface-sunken);
+}
+
+.about-photo-back {
+  transform: rotateY(180deg);
+}
+
+.about-profile-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.about-story {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  padding: 0.15rem 0.35rem;
+  justify-content: center;
+}
+
+.about-story p {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 0.98rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+/* Snapshot facts as a strip inside the profile block rather than their own card. */
+.about-snapshot-strip {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.8rem;
+  margin: 1rem 0 0;
+  padding: 0.95rem 0 0;
+  border-top: 1px solid var(--border);
+}
+
+.about-snapshot-strip > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.about-snapshot-strip dt {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--text-subtle);
+}
+
+.about-snapshot-strip dd {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  line-height: 1.35;
+  color: var(--text-muted);
+}
+
+/* ---------------------------------------------------------------------------
+   Shared block chrome (Focus, Timeline, Certificates)
+   --------------------------------------------------------------------------- */
+
+.about-focus,
+.about-timeline,
+.about-proof {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 1.2rem 1.2rem 1.3rem;
+  box-shadow: 0 8px 22px var(--shadow);
+  cursor: default;
+}
+
+.about-focus h3,
+.about-timeline h3,
+.about-proof h3 {
+  margin: 0 0 0.9rem;
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: var(--text);
+  letter-spacing: 0.02em;
+}
+
+/* ---------------------------------------------------------------------------
+   Timeline
+   A real rail with a marker per entry, not a numbered list.
+   --------------------------------------------------------------------------- */
+
+.timeline-rail {
+  position: relative;
+  margin: 0;
+  padding: 0 0 0 1.6rem;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+}
+
+/* The rail itself, stopping at the last marker rather than running past it. */
+.timeline-rail::before {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 0.45rem;
+  bottom: 0.45rem;
+  width: 2px;
+  background: var(--border-strong);
+  border-radius: 2px;
+}
+
+.timeline-rail li {
+  position: relative;
+}
+
+.timeline-marker {
+  position: absolute;
+  left: -1.6rem;
+  top: 0.3rem;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 2px solid var(--text-muted);
+}
+
+.timeline-year {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  color: var(--text-subtle);
+}
+
+.timeline-entry h4 {
+  margin: 0.1rem 0 0.3rem;
+  font-size: 1.05rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  color: var(--text);
+}
+
+.timeline-detail {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+/* ---------------------------------------------------------------------------
+   Focus
+   --------------------------------------------------------------------------- */
+
+.about-focus-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+.focus-card {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 0.9rem 0.95rem;
+  background: var(--surface-raised);
+}
+
+.focus-card h4 {
+  margin: 0 0 0.2rem;
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  color: var(--text);
+}
+
+.focus-blurb {
+  margin: 0 0 0.6rem;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  line-height: 1.35;
+  color: var(--text-subtle);
+}
+
+.focus-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.focus-chips .MuiChip-root {
+  height: auto;
+  border-radius: 999px;
+  font-size: 0.78rem;
+}
+
+.focus-chips .MuiChip-label {
+  padding: 0.3rem 0.62rem;
+}
+
+/* ---------------------------------------------------------------------------
+   Certificate gallery
+   Replaced the infinite marquee: 46 unreadable thumbnails scrolling past could
+   not be inspected, filtered, or linked to. This is a filterable grid instead.
+   --------------------------------------------------------------------------- */
+
+.certificate-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 0 0 1.1rem;
+  padding: 0;
+}
+
+.certificate-stats > div {
+  flex: 1 1 140px;
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 0.7rem 0.85rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.certificate-stats dt {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--text-subtle);
+}
+
+.certificate-stats dd {
+  /* Pinned to the bottom of the tile so the three numbers sit on one line even
+     when a label wraps -- "Documented hours" takes two lines, the others one. */
+  margin: 0.15rem 0 0;
+  margin-top: auto;
+  padding-top: 0.15rem;
+  font-size: 1.6rem;
+  line-height: 1.1;
+  color: var(--text);
+}
+
+.certificate-highlights {
+  margin-bottom: 1.2rem;
+}
+
+.certificate-highlights h4 {
+  margin: 0 0 0.6rem;
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  color: var(--text);
+}
+
+.certificate-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-bottom: 1rem;
+}
+
+.certificate-filters .MuiChip-root {
+  cursor: pointer;
+  height: auto;
+  border-radius: 999px;
+  font-size: 0.82rem;
+}
+
+.certificate-filters .MuiChip-label {
+  padding: 0.38rem 0.8rem;
+}
+
+.certificate-filters .certificate-filter-active.MuiChip-root {
+  background: var(--text-muted);
+  border-color: var(--text-muted);
+  color: var(--bg);
+}
+
+.certificate-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 0.8rem;
+}
+
+.certificate-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  padding: 0.55rem;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--surface-raised);
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+  color: inherit;
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
+
+.certificate-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 22px var(--shadow);
+  border-color: var(--border-strong);
+}
+
+.certificate-card:focus-visible {
+  outline: 2px solid var(--text-muted);
+  outline-offset: 2px;
+}
+
+.certificate-card-featured {
+  border-color: var(--border-strong);
+  box-shadow: 0 8px 18px var(--shadow);
+}
+
+.certificate-thumb {
+  position: relative;
+  display: block;
+  border-radius: 9px;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid var(--border);
+}
+
+.certificate-thumb img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: contain;
+}
+
+.certificate-ribbon {
+  position: absolute;
+  top: 0.4rem;
+  left: 0.4rem;
+  padding: 0.15rem 0.45rem;
+  border-radius: 999px;
+  background: var(--text);
+  color: var(--bg);
+  font-family: var(--font-body);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.certificate-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.18rem;
+  padding: 0 0.15rem 0.15rem;
+}
+
+.certificate-issuer {
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--text-subtle);
+}
+
+.certificate-title {
+  font-family: var(--font-body);
+  font-size: 0.86rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--text);
+}
+
+.certificate-sub {
+  font-family: var(--font-body);
+  font-size: 0.76rem;
+  color: var(--text-muted);
+}
+
+/* --- Lightbox --- */
+
+.certificate-dialog.MuiPaper-root {
+  position: relative;
+  background: var(--surface);
+  background-image: none;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 0.6rem;
+}
+
+.certificate-dialog-close.MuiIconButton-root {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  color: var(--bg);
+  background: rgba(24, 28, 20, 0.55);
+}
+
+.certificate-dialog-close.MuiIconButton-root:hover {
+  background: rgba(24, 28, 20, 0.75);
+}
+
+.certificate-dialog-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 72vh;
+  object-fit: contain;
+  border-radius: 10px;
+  background: #fff;
+}
+
+.certificate-dialog-meta {
+  padding: 0.75rem 0.5rem 0.35rem;
+}
+
+.certificate-dialog-issuer {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--text-subtle);
+}
+
+.certificate-dialog-meta h4 {
+  margin: 0.2rem 0 0;
+  font-size: 1.15rem;
+  font-weight: 400;
+  line-height: 1.25;
+  color: var(--text);
+}
+
+.certificate-dialog-detail {
+  margin: 0.3rem 0 0;
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  line-height: 1.45;
+  color: var(--text-muted);
+}
+
+.certificate-dialog-sub {
+  margin: 0.35rem 0 0;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+/* Laptop L */
+@media (max-width: 1440px) {
+  .about-section {
+    width: min(1080px, 92%);
+    gap: 1.7rem;
+  }
+
+  .about-photo-flip {
+    width: 390px;
+    min-width: 330px;
+  }
+
+  .about-focus-grid {
+    gap: 0.75rem;
+  }
+}
+
+/* Laptop / Tablet landscape */
+@media (max-width: 1024px) {
+  .about-section {
+    margin: 1.1rem auto 5rem;
+    gap: 1.4rem;
+  }
+
+  .about-subtitle {
+    max-width: 680px;
+  }
+
+  .about-photo-flip {
+    width: 320px;
+    min-width: 280px;
+  }
+
+  .about-story p {
+    font-size: 0.94rem;
+    line-height: 1.5;
+  }
+
+  .about-focus-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+}
+
+/* Four columns squeezes each value to ~170px well before the tablet
+   breakpoint, so the strip halves earlier than the rest of the layout. */
+@media (max-width: 900px) {
+  .about-snapshot-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.7rem;
+  }
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+  .about-section {
+    margin: 0.95rem auto 4.2rem;
+    gap: 1.2rem;
+  }
+
+  .about-kicker {
+    font-size: 0.82rem;
+  }
+
+  .about-section .section-title {
+    font-size: clamp(1.55rem, 6vw, 2rem);
+  }
+
+  .about-subtitle {
+    font-size: 0.94rem;
+    line-height: 1.5;
+  }
+
+  /* The photo goes full width here, so the block has to stack -- left as a
+     flex row, the photo and the prose squeeze each other into narrow columns. */
+  .about-profile-main {
+    flex-direction: column;
+    gap: 0.9rem;
+  }
+
+  .about-photo-flip {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .about-photo-flip-inner {
+    aspect-ratio: 16 / 9.8;
+  }
+
+
+  .about-story {
+    padding: 0.1rem 0.1rem 0.2rem;
+  }
+
+  .about-story p {
+    font-size: 0.92rem;
+  }
+
+  .focus-card h4 {
+    font-size: 0.95rem;
+  }
+
+  /* Two columns leaves "Learn" alone on a third row and squeezes the chips. */
+  .about-focus-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .timeline-detail {
+    font-size: 0.88rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .about-section {
+    width: min(1120px, 94%);
+    margin: 0.85rem auto 3.6rem;    
+    gap: 1rem;
+  }
+
+  .about-kicker {
+    font-size: 0.76rem;
+    letter-spacing: 0.1em;
+  }
+
+  .about-section .section-title {
+    font-size: 1.45rem;
+  }
+
+  .about-subtitle {
+    font-size: 0.88rem;
+  }
+
+  /* Labels like "IT Operations Intern at Nexus Technologies" need the full
+     width at this size; two columns wrapped them to five or six lines. */
+  .about-snapshot-strip {
+    grid-template-columns: 1fr;
+    gap: 0.6rem;
+  }
+
+  .timeline-entry h4 {
+    font-size: 0.98rem;
+  }
+}
+
+/* Touch devices: avoid flip interaction trap */
+@media (hover: none) {
+  .about-photo-flip:hover .about-photo-flip-inner {
+    transform: none;
+  }
+}
+
+.about-section {
+  scroll-margin-top: 6rem;
+}
+
+@media (max-width: 768px) {
+  .about-section {
+    scroll-margin-top: 5.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-section {
+    scroll-margin-top: 4.8rem;
+  }
+}
+/* "Show all N" / "Show fewer" toggle under the certificate grid. */
+.certificate-toggle {
+  align-self: center;
+  margin: 1rem auto 0;
+  display: block;
+  min-height: 44px;
+  padding: 0.6rem 1.4rem;
+  border-radius: 999px;
+  border: 1px solid var(--border-strong);
+  background: var(--surface-raised);
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-size: 0.86rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.certificate-toggle:hover {
+  background: var(--hover);
+  transform: translateY(-1px);
+}
+
+.certificate-toggle:focus-visible {
+  outline: 2px solid var(--text-muted);
+  outline-offset: 2px;
+}
+
+/* ---------------------------------------------------------------------------
+   Certificate gallery on small screens
+
+   The card min-width was forcing a single column below ~480px, which made this
+   section roughly 16,000px tall on a 390px phone -- about two thirds of the
+   whole page. Narrower cards keep two columns down to 320px.
+   --------------------------------------------------------------------------- */
+
+@media (max-width: 620px) {
+  .certificate-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.6rem;
+  }
+
+  .certificate-card {
+    padding: 0.4rem;
+    gap: 0.4rem;
+  }
+
+  .certificate-title {
+    font-size: 0.78rem;
+    /* Long course titles would otherwise make cards wildly uneven heights. */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .certificate-issuer {
+    font-size: 0.62rem;
+  }
+
+  .certificate-sub {
+    font-size: 0.7rem;
+  }
+
+  .certificate-stats {
+    gap: 0.4rem;
+  }
+
+  .certificate-stats > div {
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 0.5rem 0.55rem;
+  }
+
+  /* Below this, three equal tiles leave only ~63px of content each -- narrower
+     than the unbreakable word "CERTIFICATES", so the label spilled outside the
+     tile. Two columns with the last spanning the full width reads as deliberate
+     rather than stranded, and gives every label room. */
+  @media (max-width: 400px) {
+    .certificate-stats {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .certificate-stats > div:last-child {
+      grid-column: 1 / -1;
+    }
+  }
+
+  .certificate-stats dt {
+    font-size: 0.62rem;
+    letter-spacing: 0.06em;
+  }
+
+  .certificate-stats dd {
+    font-size: 1.25rem;
+  }
+
+  /* Comfortable touch targets for the issuer filters. */
+  .certificate-filters .MuiChip-root {
+    min-height: 40px;
+  }
+
+  .certificate-filters .MuiChip-label {
+    padding: 0.4rem 0.7rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .certificate-grid {
+    gap: 0.5rem;
+  }
+
+  .certificate-title {
+    font-size: 0.74rem;
+  }
+}

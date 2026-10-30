@@ -1,0 +1,304 @@
+.home {
+  width: 100%;
+  margin: clamp(4rem, 6vw, 6rem) 0;
+  scroll-margin-top: 6rem;
+}
+
+.home-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: clamp(0.8rem, 1.5vw, 1.5rem);
+  padding: clamp(34px, 4.5vw, 60px) clamp(6%, 12vw, 18%);
+  min-height: calc(100vh - var(--header-offset));
+}
+
+.image-card {
+  order: 2;
+  perspective: 1000px;
+  flex: 0 1 auto;
+  width: min(380px, 35vw);
+  max-width: 100%;
+  min-width: 210px;
+}
+
+.image-card-inner {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4.2;
+  transform-style: preserve-3d;
+  transition: transform 0.8s ease;
+  border-radius: 16px;
+}
+
+.image-card:hover .image-card-inner {
+  transform: rotateY(180deg);
+}
+
+.image-front,
+.image-back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 24px var(--shadow-lifted);
+  border: 1px solid var(--border);
+}
+
+.image-back {
+  transform: rotateY(180deg);
+}
+
+.image-front img,
+.image-back img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.home-details {
+  flex-basis: 55%;
+  order: 1;
+  cursor: default;
+}
+
+.home-intro .hello {
+  font-size: 1.8rem;
+  margin: 0;
+}
+
+.home-intro h2 {
+  font-size: 3rem;
+  font-weight: 300;
+  margin: 0;
+}
+
+.home-intro .p-details {
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  margin: 0.2rem 0;
+  line-height: 1.4;
+}
+
+.home-intro .typing-effect {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.4em;
+}
+
+.home-intro .typing-cursor {
+  margin-left: 2px;
+  animation: typing-cursor-blink 0.8s steps(1, end) infinite;
+}
+
+@keyframes typing-cursor-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.home-actions {
+  margin-top: 1.4rem;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+}
+
+.home-actions .MuiButton-root {
+  text-transform: none;
+  font-family: var(--font-display);
+  letter-spacing: 0.4px;
+  border-radius: 10px;
+  min-width: 0;
+}
+
+.resume-btn.MuiButton-root {
+  background-color: var(--text-muted);
+  color: var(--bg);
+  padding: 0.5rem 1rem;
+}
+
+.social-btn.MuiButton-root {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  padding: 0;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.social-btn .MuiSvgIcon-root {
+  font-size: 1.7rem;
+}
+
+.linkedin-btn.MuiButton-root {
+  background-color: #0077b5;
+  color: #ffffff;
+}
+
+.github-btn.MuiButton-root {
+  background-color: var(--text);
+  color: var(--bg);
+}
+
+@media (max-width: 1440px) {
+  .home {
+    margin: 4.4rem 0;
+  }
+
+  .home-section {
+    padding: 42px 9%;
+    gap: 1.2rem;
+  }
+
+  .image-card {
+    width: min(270px, 24vw);
+    min-width: 190px;
+  }
+
+  .image-card-inner {
+    aspect-ratio: 3 / 3.8;
+  }
+
+  .home-details {
+    flex-basis: 62%;
+  }
+
+  .home-intro h2 {
+    font-size: 2.35rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .home {
+    margin: 4rem 0;
+  }
+
+  .home-section {
+    padding: 34px 7%;
+    gap: 1rem;
+  }
+
+  .image-card {
+    width: min(235px, 26vw);
+    min-width: 175px;
+  }
+
+  .image-card-inner {
+    aspect-ratio: 3 / 3.7;
+  }
+
+  .home-details {
+    flex-basis: 64%;
+  }
+
+  .home-intro h2 {
+    font-size: 2.1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .home {
+    margin: 4rem 0;
+    scroll-margin-top: 5.2rem;
+  }
+
+  .home-section {
+    flex-direction: column;
+    align-items: center;
+    padding: 34px 7%;
+    gap: 1.3rem;
+  }
+
+  .image-card {
+    order: 1;
+    flex: none;
+    width: min(300px, 78vw);
+    min-width: 0;
+  }
+
+  .image-card-inner {
+    aspect-ratio: 3 / 4;
+  }
+
+  .home-details {
+    order: 2;
+    width: 100%;
+    max-width: 620px;
+    text-align: center;
+  }
+
+  .home-intro h2 {
+    font-size: 2rem;
+  }
+
+  .home-intro .p-details {
+    font-size: 0.98rem;
+  }
+
+  .home-actions {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .home {
+    margin: 3.8rem 0;
+    scroll-margin-top: 4.8rem;
+  }
+
+  .home-section {
+    padding: 26px 5%;
+    gap: 1.1rem;
+  }
+
+  .image-card {
+    width: min(240px, 72vw);
+  }
+
+  .image-card-inner {
+    aspect-ratio: 3 / 3.9;
+  }
+
+  .home-intro .hello {
+    font-size: 1.2rem;
+  }
+
+  .home-intro h2 {
+    font-size: 1.7rem;
+  }
+
+  .home-intro .p-details {
+    font-size: 0.92rem;
+    line-height: 1.35;
+  }
+
+  .home-actions {
+    gap: 0.55rem;
+  }
+
+  .resume-btn.MuiButton-root {
+    padding: 0.42rem 0.85rem;
+  }
+
+  .social-btn.MuiButton-root {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+  }
+
+  .social-btn .MuiSvgIcon-root {
+    font-size: 1.45rem;
+  }
+}
+
+@media (hover: none) {
+  .image-card:hover .image-card-inner {
+    transform: none;
+  }
+}

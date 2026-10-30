@@ -1,0 +1,573 @@
+.contact-section {
+  width: min(1120px, 92%);
+  margin: 1.25rem auto 6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.contact-header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.contact-kicker {
+  margin: 0;
+  font-size: 0.95rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  opacity: 0.8;
+  font-family: var(--font-body);
+  font-weight: 700;
+}
+
+.contact-section .section-title {
+  margin: 0;
+  font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+  line-height: 1.15;
+  font-weight: 400;
+  color: var(--text);
+}
+
+.contact-subtitle {
+  margin: 0 auto;
+  max-width: 760px;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+/* The reveal wrapper is the grid item now, so it has to pass the row's full
+   height through to the card -- otherwise the cards stop being equal height. */
+.contact-grid > [data-reveal] {
+  display: flex;
+}
+
+.contact-grid > [data-reveal] > * {
+  width: 100%;
+}
+
+.contact-card {
+  width: 100%;
+  text-decoration: none;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: inherit;
+  border-radius: 16px;
+  padding: 0.95rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  box-shadow: 0 8px 20px var(--shadow);
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+}
+
+.contact-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 24px var(--shadow);
+  border-color: var(--border-strong);
+}
+
+.contact-card:focus-visible {
+  outline: 2px solid var(--text-muted);
+  outline-offset: 2px;
+}
+
+.contact-card-primary {
+  background: var(--surface-raised);
+  border-color: var(--border-strong);
+}
+
+.contact-card-icon {
+  width: 46px;
+  height: 46px;
+  min-width: 46px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--text-muted);
+  color: var(--bg);
+  box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.15);
+}
+
+.contact-card-icon .MuiSvgIcon-root {
+  font-size: 1.35rem;
+}
+
+.contact-card-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.18rem;
+}
+
+.contact-card-text h3 {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--text);
+}
+
+.contact-card-text p {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  line-height: 1.35;
+  color: var(--text-muted);
+}
+
+/* channel-specific icon colors */
+.contact-card[href^="mailto:"] .contact-card-icon {
+  background: #b23b3b;
+}
+
+.contact-card[href*="linkedin.com"] .contact-card-icon {
+  background: #0077b5;
+}
+
+/* GitHub's brand black sits almost invisibly on the dark card, so this one chip
+   inverts with the theme instead of being pinned to the brand colour. */
+.contact-card[href*="github.com"] .contact-card-icon {
+  background: var(--text);
+  color: var(--bg);
+}
+
+.contact-card[href*="jobs180.com"] .contact-card-icon {
+  background: #5a4a1a;
+}
+
+
+/* Viber button style */
+button.contact-card .contact-card-icon {
+  background: #6f42c1;
+}
+
+/* Modal
+   Positioning, backdrop and focus management come from MUI's Dialog; these rules
+   only style the paper it renders. */
+.contact-modal.MuiPaper-root {
+  position: relative;
+  width: min(460px, 100%);
+  margin: 1rem;
+  background: var(--surface);
+  background-image: none;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 1.2rem 1.2rem 1.15rem;
+  box-shadow: 0 18px 36px var(--shadow-lifted);
+  text-align: center;
+}
+
+.contact-modal-close.MuiIconButton-root {
+  position: absolute;
+  top: 0.55rem;
+  right: 0.55rem;
+  color: var(--text-muted);
+}
+
+.contact-modal h3 {
+  margin: 0.2rem 0 0.25rem;
+  font-size: 1.35rem;
+  font-weight: 400;
+  color: var(--text);
+}
+
+.contact-modal p {
+  margin: 0 0 0.85rem;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+.contact-modal img {
+  width: min(300px, 100%);
+  height: auto;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  box-shadow: 0 6px 14px var(--shadow);
+  background: #ffffff;
+  /* MUI's Dialog paper is a flex column, so text-align on the parent does not
+     centre this image -- it has to align itself. */
+  align-self: center;
+}
+
+/* Laptop L */
+@media (max-width: 1440px) {
+  .contact-section {
+    width: min(1080px, 92%);
+  }
+
+  .contact-grid {
+    gap: 0.8rem;
+  }
+
+  .contact-card {
+    padding: 0.88rem 0.92rem;
+  }
+}
+
+/* Laptop / Tablet landscape */
+@media (max-width: 1024px) {
+  .contact-section {
+    margin: 1.1rem auto 5rem;
+    gap: 1.2rem;
+  }
+
+  .contact-subtitle {
+    max-width: 680px;
+  }
+
+  .contact-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+  }
+
+  .contact-card-icon {
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+  }
+
+  .contact-card-icon .MuiSvgIcon-root {
+    font-size: 1.2rem;
+  }
+
+  .contact-card-text h3 {
+    font-size: 0.98rem;
+  }
+
+  .contact-card-text p {
+    font-size: 0.86rem;
+  }
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+  .contact-section {
+    margin: 0.95rem auto 4.2rem;
+    gap: 1rem;
+  }
+
+  .contact-kicker {
+    font-size: 0.82rem;
+  }
+
+  .contact-section .section-title {
+    font-size: clamp(1.55rem, 6vw, 2rem);
+  }
+
+  .contact-subtitle {
+    font-size: 0.94rem;
+    line-height: 1.5;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 0.65rem;
+  }
+
+  .contact-card {
+    border-radius: 14px;
+    padding: 0.85rem 0.9rem;
+  }
+
+  .contact-card:hover {
+    transform: translateY(-2px);
+  }
+
+  .contact-modal {
+    border-radius: 14px;
+    padding: 1rem 1rem 0.95rem;
+  }
+
+  .contact-modal h3 {
+    font-size: 1.2rem;
+  }
+
+  .contact-modal p {
+    font-size: 0.9rem;
+  }
+
+  .contact-modal img {
+    width: min(260px, 100%);
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .contact-section {
+    width: min(1120px, 94%);
+    margin: 0.85rem auto 3.6rem;
+  }
+
+  .contact-kicker {
+    font-size: 0.76rem;
+    letter-spacing: 0.1em;
+  }
+
+  .contact-section .section-title {
+    font-size: 1.45rem;
+  }
+
+  .contact-subtitle {
+    font-size: 0.88rem;
+  }
+
+  .contact-card {
+    border-radius: 12px;
+    padding: 0.78rem 0.78rem;
+    gap: 0.62rem;
+  }
+
+  .contact-card-icon {
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
+    border-radius: 10px;
+  }
+
+  .contact-card-icon .MuiSvgIcon-root {
+    font-size: 1.08rem;
+  }
+
+  .contact-card-text h3 {
+    font-size: 0.92rem;
+  }
+
+  .contact-card-text p {
+    font-size: 0.8rem;
+    line-height: 1.3;
+  }
+
+  .contact-modal-overlay {
+    padding: 0.7rem;
+  }
+
+  .contact-modal {
+    border-radius: 12px;
+    padding: 0.9rem 0.8rem 0.85rem;
+  }
+
+  .contact-modal-close {
+    width: 32px;
+    height: 32px;
+    top: 0.4rem;
+    right: 0.4rem;
+  }
+
+  .contact-modal h3 {
+    margin-top: 0.3rem;
+    font-size: 1.05rem;
+  }
+
+  .contact-modal p {
+    font-size: 0.84rem;
+    margin-bottom: 0.65rem;
+  }
+
+  .contact-modal img {
+    width: min(225px, 100%);
+    border-radius: 10px;
+  }
+}
+
+.contact-section {
+  scroll-margin-top: 6rem;
+}
+
+@media (max-width: 768px) {
+  .contact-section {
+    scroll-margin-top: 5.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-section {
+    scroll-margin-top: 4.8rem;
+  }
+}
+/* ---------------------------------------------------------------------------
+   Contact form
+   Leads the section: the only channel that does not require leaving the site
+   or having a mail client configured.
+   --------------------------------------------------------------------------- */
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 1.3rem 1.3rem 1.4rem;
+  box-shadow: 0 10px 26px var(--shadow);
+}
+
+.contact-form h3 {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  color: var(--text);
+}
+
+.contact-form-intro {
+  margin: -0.35rem 0 0.35rem;
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+.contact-form-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+/* MUI inputs read from the same tokens as the rest of the page. */
+.contact-form .MuiOutlinedInput-root {
+  background: var(--surface-raised);
+  font-family: var(--font-body);
+}
+
+.contact-form .MuiOutlinedInput-notchedOutline {
+  border-color: var(--border-strong);
+}
+
+.contact-form .MuiInputBase-input,
+.contact-form .MuiInputLabel-root {
+  font-family: var(--font-body);
+}
+
+.contact-form-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  flex-wrap: wrap;
+  margin-top: 0.15rem;
+}
+
+.contact-form-submit.MuiButton-root {
+  background: var(--text-muted);
+  color: var(--bg);
+  border-radius: 12px;
+  padding: 0.6rem 1.15rem;
+  font-family: var(--font-body);
+}
+
+.contact-form-submit.MuiButton-root:hover {
+  background: var(--text);
+}
+
+.contact-form-status {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  line-height: 1.4;
+  color: var(--text-muted);
+  /* Reserves the line so the layout does not jump when a message appears. */
+  min-height: 1.2em;
+}
+
+.contact-alt-label {
+  margin: 0.4rem 0 -0.4rem;
+  font-family: var(--font-body);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--text-subtle);
+  text-align: center;
+}
+
+/* --- Email card with copy control --- */
+
+.contact-card-email {
+  cursor: default;
+}
+
+.contact-card-email:hover {
+  transform: none;
+  box-shadow: 0 8px 20px var(--shadow);
+  border-color: var(--border);
+}
+
+.contact-card-email .contact-card-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.contact-card-email .contact-card-text a {
+  font-family: var(--font-body);
+  font-size: 0.86rem;
+  line-height: 1.35;
+  color: var(--text-muted);
+  text-decoration: none;
+  overflow-wrap: anywhere;
+  /* An inline anchor is only as tall as its line box (~19px), which is an
+     awkward tap target. Padding gives it a comfortable touch height. */
+  display: inline-block;
+  padding: 0.35rem 0;
+}
+
+.contact-card-email .contact-card-text a:hover {
+  text-decoration: underline;
+}
+
+.contact-copy-btn.MuiIconButton-root {
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .contact-form {
+    padding: 1rem 1rem 1.1rem;
+    border-radius: 14px;
+  }
+
+  .contact-form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Helper text always occupies a line (the component renders " " when there is
+   no error), so showing a validation message never shifts the layout. */
+.contact-form .MuiFormHelperText-root {
+  font-family: var(--font-body);
+  font-size: 0.76rem;
+  margin-left: 0.2rem;
+  min-height: 1.2em;
+}
+
+.contact-form .MuiFormHelperText-root.Mui-error,
+.contact-form-status-error {
+  color: #c0553f;
+}
+
+.dark-mode .contact-form .MuiFormHelperText-root.Mui-error,
+.dark-mode .contact-form-status-error {
+  color: #e79a86;
+}
+
+.contact-form .MuiOutlinedInput-root.Mui-error .MuiOutlinedInput-notchedOutline {
+  border-color: #c0553f;
+}
+
+.dark-mode .contact-form .MuiOutlinedInput-root.Mui-error .MuiOutlinedInput-notchedOutline {
+  border-color: #e79a86;
+}

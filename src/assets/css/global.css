@@ -1,0 +1,427 @@
+/* Fonts are loaded via <link rel="preconnect"/"stylesheet"> in index.html.
+   A CSS @import here would block rendering until this stylesheet parsed. */
+
+:root {
+  /* --- Surfaces, back to front --- */
+  --bg: #ecdfcc;              /* page ground */
+  --surface: #fcf6ea;         /* cards sitting on the ground */
+  --surface-raised: #f7eddc;  /* chips/tags nested inside a card */
+  --surface-sunken: #efe3d0;  /* media wells */
+
+  /* --- Text --- */
+  --text: #181c14;
+  --text-muted: #2f342c;
+  --text-subtle: #6f6a63;
+
+  /* --- Lines & depth --- */
+  --border: rgba(24, 28, 20, 0.08);
+  --border-strong: rgba(24, 28, 20, 0.15);
+  --shadow: rgba(24, 28, 20, 0.12);
+  --shadow-lifted: rgba(24, 28, 20, 0.18);
+  --overlay: rgba(24, 28, 20, 0.58);
+  --hover: rgba(24, 28, 20, 0.08);
+
+  /* Retained: some rules still reference --accent directly. */
+  --accent: #3c3d37;
+
+  /* --- Type --- */
+  --font-display: "Koulen", "Impact", sans-serif;
+  --font-body: "Roboto", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --header-offset: 4.2rem;
+
+  color-scheme: light;
+}
+
+/* Dark mode overrides token VALUES only -- never per-component selectors.
+   The .dark-mode class is set on <html> by the inline script in index.html,
+   which runs before the app bundle and so prevents the flash of light theme. */
+.dark-mode {
+  --bg: #181c14;
+  --surface: #2f362d;
+  --surface-raised: #3a4336;
+  --surface-sunken: #232821;
+
+  --text: #ecdfcc;
+  --text-muted: #d8d0c3;
+  --text-subtle: #a8b39d;
+
+  --border: rgba(236, 223, 204, 0.14);
+  --border-strong: rgba(236, 223, 204, 0.25);
+  --shadow: rgba(0, 0, 0, 0.35);
+  --shadow-lifted: rgba(0, 0, 0, 0.45);
+  --overlay: rgba(0, 0, 0, 0.7);
+  --hover: rgba(236, 223, 204, 0.12);
+
+  --accent: #a8b39d;
+
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Available to assistive tech, invisible on screen. */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--header-offset);
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-display);
+  letter-spacing: 0.2px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.app-shell {
+  background-color: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+main {
+  display: flow-root;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 18%;
+  background-color: var(--bg);
+  border-bottom: 1px solid var(--border);
+  transition: box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.header.header-scrolled {
+  box-shadow: 0 6px 16px var(--shadow);
+}
+
+.header-left a {
+  text-decoration: none;
+  color: var(--text);
+  font-size: 2rem;
+  letter-spacing: 0.3px;
+}
+
+#span-header {
+  display: inline-block;
+  line-height: 1;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+}
+
+.header-right a {
+  text-decoration: none;
+  color: var(--text);
+  font-size: 1.5rem;
+  letter-spacing: 0.2px;
+  transition: opacity 0.2s ease;
+}
+
+.header-right a:hover {
+  opacity: 0.72;
+}
+
+.dark-mode-icon {
+  font-size: 1.4rem !important;
+  color: var(--text);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.dark-mode-icon:hover {
+  transform: translateY(-1px);
+  opacity: 0.75;
+}
+
+/* The theme toggle is a MUI IconButton now; it brings its own hover and focus
+   states, so only the icon colour needs stating. */
+.hamburger-menu.MuiIconButton-root {
+  display: none;
+  color: var(--text);
+}
+
+.hamburger-menu-icon {
+  font-size: 1.8rem !important;
+}
+
+/* --- Mobile navigation drawer --- */
+
+.mobile-nav-drawer {
+  width: min(78vw, 300px);
+  padding: 0.6rem 0.9rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.mobile-nav-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--text);
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.mobile-nav-links {
+  display: flex;
+  flex-direction: column;
+  padding-top: 0.5rem;
+}
+
+.mobile-nav-links a {
+  text-decoration: none;
+  color: var(--text);
+  font-size: 1.2rem;
+  padding: 0.75rem 0.35rem;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+}
+
+.mobile-nav-links a:hover,
+.mobile-nav-links a:focus-visible {
+  background-color: var(--hover);
+}
+
+footer {
+  border-top: 1px solid var(--border-strong);
+  padding: 2rem 0;
+  text-align: center;
+}
+
+footer p {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  letter-spacing: 0.2px;
+  color: var(--accent);
+}
+
+/* The ~65 lines of per-selector .app-shell.dark-mode overrides that used to live
+   here are gone: every component now reads the tokens above, so dark mode is
+   handled entirely by the .dark-mode value swap. */
+
+@media (max-width: 1440px) {
+  .header {
+    padding: 14px 12%;
+  }
+
+  .header-left a {
+    font-size: 1.85rem;
+  }
+
+  .header-right a {
+    font-size: 1.35rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  :root {
+    --header-offset: 3.9rem;
+  }
+
+  html {
+    scroll-padding-top: var(--header-offset);
+  }
+
+  .header {
+    padding: 12px 8%;
+  }
+
+  .header-left a {
+    font-size: 1.65rem;
+  }
+
+  .header-right {
+    gap: 0.8rem;
+  }
+
+  .header-right a {
+    font-size: 1.18rem;
+  }
+
+  .dark-mode-icon {
+    font-size: 1.25rem !important;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --header-offset: 3.7rem;
+  }
+  
+  html {
+    scroll-padding-top: var(--header-offset);
+  }
+
+  .header {
+    padding: 10px 6%;
+    align-items: center;
+  }
+
+  .header-left a {
+    font-size: 1.45rem;
+  }
+
+  .hamburger-menu.MuiIconButton-root {
+    display: inline-flex;
+    margin-left: auto;
+  }
+
+  /* Mobile navigation now lives in a MUI Drawer, so the inline nav is simply
+     hidden here rather than being restyled into a dropdown. */
+  .header-right {
+    display: none;
+  }
+
+  .dark-mode-icon {
+    font-size: 1.15rem !important;
+  }
+
+  .hamburger-menu-icon {
+    font-size: 1.5rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --header-offset: 3.5rem;
+  }
+  
+  html {
+    scroll-padding-top: var(--header-offset);
+  }
+
+  .header {
+    padding: 10px 4%;
+  }
+
+  .header-left a {
+    font-size: 1.18rem;
+  }
+
+  .header-right a {
+    font-size: 0.92rem;
+    letter-spacing: 0;
+  }
+
+  .dark-mode-icon {
+    font-size: 1.05rem !important;
+  }
+
+  .hamburger-menu-icon {
+    font-size: 1.35rem !important;
+  }
+}
+/* ---------------------------------------------------------------------------
+   Scroll reveal
+   Driven by useInView (src/hooks/useInView.js), which flips data-revealed once
+   the element first enters the viewport.
+
+   The hidden state is keyed off data-revealed="false" rather than [data-reveal]
+   alone, so an element is only ever hidden while JS is actively tracking it.
+   The hook also opts straight out -- setting revealed immediately -- when
+   IntersectionObserver is missing or the visitor prefers reduced motion, so
+   content can never end up stranded invisible.
+   --------------------------------------------------------------------------- */
+
+[data-reveal] {
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+[data-reveal][data-revealed="false"] {
+  opacity: 0;
+  transform: translateY(18px);
+  will-change: opacity, transform;
+}
+
+[data-reveal][data-revealed="true"] {
+  opacity: 1;
+  transform: none;
+}
+
+/* Printing (and "Save as PDF") never scrolls, so the IntersectionObserver would
+   never fire and every un-revealed section would print blank. Force them all
+   visible. */
+@media print {
+  [data-reveal],
+  [data-reveal][data-revealed="false"] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+}
+
+/* ---------------------------------------------------------------------------
+   Reduced motion
+   The site runs two infinite animations (the certificate marquee and the hero
+   typing effect). Both must stop for users who ask for reduced motion.
+   --------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  /* Reveals must not leave content stranded offscreen or invisible. */
+  [data-reveal],
+  [data-reveal][data-revealed="false"] {
+    opacity: 1;
+    transform: none;
+  }
+
+  .typing-cursor {
+    display: none;
+  }
+
+  /* Flip cards animate on hover; keep both faces static. */
+  .image-card:hover .image-card-inner,
+  .about-photo-flip:hover .about-photo-flip-inner {
+    transform: none;
+  }
+}

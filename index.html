@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Ken Castillo | Full-Stack Developer Portfolio</title>
+    <meta
+      name="description"
+      content="Portfolio of Prince Kenneth Castillo, a Computer Science graduate building full-stack applications with React, Node.js, Express, and PostgreSQL."
+    />
+    <meta name="author" content="Prince Kenneth Castillo" />
+    <link rel="canonical" href="https://ken-portfolio-kappa.vercel.app/" />
+
+    <link rel="icon" type="image/png" href="/K-Logo-Icon.png" />
+
+    <!-- Painted by the browser chrome before the app boots, so it matches each scheme. -->
+    <meta name="theme-color" content="#ecdfcc" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#181c14" media="(prefers-color-scheme: dark)" />
+
+    <!-- Open Graph / LinkedIn / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Ken Castillo" />
+    <meta property="og:title" content="Ken Castillo | Full-Stack Developer Portfolio" />
+    <meta
+      property="og:description"
+      content="Computer Science graduate building full-stack applications with React, Node.js, Express, and PostgreSQL."
+    />
+    <meta property="og:url" content="https://ken-portfolio-kappa.vercel.app/" />
+    <meta property="og:image" content="https://ken-portfolio-kappa.vercel.app/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Ken Castillo, Computer Science Graduate" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Ken Castillo | Full-Stack Developer Portfolio" />
+    <meta
+      name="twitter:description"
+      content="Computer Science graduate building full-stack applications with React, Node.js, Express, and PostgreSQL."
+    />
+    <meta name="twitter:image" content="https://ken-portfolio-kappa.vercel.app/og-image.jpg" />
+
+    <!--
+      Fonts via <link> rather than a CSS @import: an @import inside global.css
+      cannot begin downloading until that stylesheet has been fetched and parsed,
+      which serialises two round trips before any text can render.
+      Roboto is requested at the four weights actually used instead of the full
+      100-900 italic variable range.
+    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Koulen&family=Roboto:wght@400;500;600;700&display=swap"
+    />
+
+    <!--
+      Applies the saved colour scheme before the app bundle runs, so a returning
+      dark-mode visitor never sees a flash of the light theme. Keys and class
+      names match the MUI theme's colorSchemeSelector (".%s-mode"), so
+      useColorScheme() stays in sync with whatever this sets.
+    -->
+    <script>
+      (function () {
+        try {
+          var mode = localStorage.getItem("mui-mode") || "system";
+          var scheme =
+            mode === "system"
+              ? window.matchMedia("(prefers-color-scheme: dark)").matches
+                ? "dark"
+                : "light"
+              : mode;
+          document.documentElement.classList.add(scheme + "-mode");
+        } catch (e) {
+          // Private mode or blocked storage: fall back to the light default.
+          document.documentElement.classList.add("light-mode");
+        }
+      })();
+    </script>
+
+    <script type="module" src="/src/main.jsx" defer></script>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>

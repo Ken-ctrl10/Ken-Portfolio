@@ -1,0 +1,442 @@
+.projects-section {
+  width: min(1120px, 92%);
+  margin: 1.25rem auto 6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.projects-header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.projects-kicker {
+  margin: 0;
+  font-size: 0.95rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  opacity: 0.8;
+  font-family: var(--font-body);
+  font-weight: 700;
+}
+
+.projects-section .section-title {
+  margin: 0;
+  font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+  line-height: 1.15;
+  font-weight: 400;
+  color: var(--text);
+}
+
+.projects-subtitle {
+  margin: 0 auto;
+  max-width: 760px;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+.featured-project-card {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 1.2rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 1rem;
+  box-shadow: 0 12px 28px var(--shadow);
+  overflow: hidden;
+}
+
+.featured-project-media {
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--surface-sunken);
+  min-height: 320px;
+}
+
+.featured-project-media img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transition: transform 0.45s ease;
+}
+
+.featured-project-card:hover .featured-project-media img {
+  transform: scale(1.03);
+}
+
+.featured-project-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.85rem;
+  padding: 0.25rem 0.2rem;
+}
+
+.project-badge {
+  margin: 0;
+  width: fit-content;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.featured-project-content h3,
+.secondary-project-content h3 {
+  margin: 0;
+  font-size: 1.35rem;
+  line-height: 1.25;
+  font-weight: 400;
+  color: var(--text);
+}
+
+.featured-project-content p,
+.secondary-project-content p {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 0.98rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+.project-tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+/* Tech tags are MUI Chips now; colour and font come from the Chip override in
+   theme.js, so only the pill sizing is stated here. */
+.project-tech-tags .MuiChip-root {
+  height: auto;
+  border-radius: 999px;
+  font-size: 0.82rem;
+}
+
+.project-tech-tags .MuiChip-label {
+  padding: 0.38rem 0.75rem;
+}
+
+.project-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-top: 0.2rem;
+}
+
+.project-btn {
+  /* Explicit display: these render as <a> when the link exists and <button>
+     when it doesn't. Without this, an inline anchor and an inline-block button
+     compute their padding differently and the two sit at different heights. */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.2;
+  text-decoration: none;
+  border: none;
+  border-radius: 12px;
+  padding: 0.72rem 1rem;
+  /* Body font, not display: Koulen is single-weight all-caps and gets hard to
+     read at button size. */
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease, box-shadow 0.25s ease;
+}
+
+.project-btn:hover {
+  transform: translateY(-2px);
+}
+
+.project-btn-primary {
+  background: var(--text-muted);
+  color: var(--bg);
+  box-shadow: 0 8px 18px var(--shadow);
+}
+
+.project-btn-secondary {
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid var(--border-strong);
+}
+
+.project-btn-disabled {
+  background: var(--surface-sunken);
+  color: var(--text-subtle);
+  cursor: not-allowed;
+}
+
+.project-btn-disabled:hover {
+  transform: none;
+}
+
+/* Three columns, matching the three secondary projects. At two columns the odd
+   count left the last card alone beside an empty gap, which read as unfinished.
+   Drops to two columns then one as the viewport narrows. */
+.secondary-projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.secondary-project-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 10px 22px var(--shadow);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.secondary-project-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 28px var(--shadow);
+}
+
+.secondary-project-media {
+  background: var(--surface-sunken);
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+
+.secondary-project-media img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transition: transform 0.35s ease;
+}
+
+.secondary-project-card:hover .secondary-project-media img {
+  transform: scale(1.04);
+}
+
+.secondary-project-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  padding: 1rem;
+  /* Fill the stretched grid row so the actions below can sit at the bottom. */
+  flex: 1;
+}
+
+/* Pins every card's buttons to the bottom edge, so they line up across the row
+   even when one card's tech tags wrap onto more lines than its neighbours'. */
+.secondary-project-content .project-actions {
+  margin-top: auto;
+}
+
+/* Laptop L */
+@media (max-width: 1440px) {
+  .projects-section {
+    width: min(1080px, 92%);
+  }
+
+  .featured-project-card {
+    grid-template-columns: 1.05fr 1fr;
+    gap: 1rem;
+  }
+
+  .featured-project-media {
+    min-height: 300px;
+  }
+}
+
+/* Laptop / Tablet landscape */
+@media (max-width: 1024px) {
+  .projects-section {
+    margin: 1.1rem auto 5rem;
+    gap: 1.2rem;
+  }
+
+  .projects-subtitle {
+    max-width: 680px;
+  }
+
+  .featured-project-card {
+    grid-template-columns: 1fr;
+    padding: 0.9rem;
+  }
+
+  .featured-project-media {
+    min-height: 260px;
+  }
+
+  .featured-project-content h3,
+  .secondary-project-content h3 {
+    font-size: 1.2rem;
+  }
+
+  .featured-project-content p,
+  .secondary-project-content p {
+    font-size: 0.94rem;
+    line-height: 1.5;
+  }
+
+  .secondary-projects-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.85rem;
+  }
+
+  .project-btn {
+    padding: 0.65rem 0.9rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+  .projects-section {
+    margin: 0.95rem auto 4.2rem;
+    gap: 1rem;
+  }
+
+  .projects-kicker {
+    font-size: 0.82rem;
+  }
+
+  .projects-section .section-title {
+    font-size: clamp(1.55rem, 6vw, 2rem);
+  }
+
+  .projects-subtitle {
+    font-size: 0.94rem;
+    line-height: 1.5;
+  }
+
+  .featured-project-card,
+  .secondary-project-card {
+    border-radius: 14px;
+  }
+
+  .featured-project-media {
+    min-height: 220px;
+    border-radius: 12px;
+  }
+
+  .project-badge {
+    font-size: 0.72rem;
+    padding: 0.28rem 0.58rem;
+  }
+
+  .project-tech-tags {
+    gap: 0.45rem;
+  }
+
+  .project-tech-tags .MuiChip-root {
+    font-size: 0.75rem;
+  }
+
+  .project-tech-tags .MuiChip-label {
+    padding: 0.32rem 0.62rem;
+  }
+
+  .secondary-projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .secondary-project-content {
+    gap: 0.65rem;
+    padding: 0.9rem;
+  }
+
+  .project-actions {
+    gap: 0.55rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .projects-section {
+    width: min(1120px, 94%);
+    margin: 0.85rem auto 3.6rem;
+  }
+
+  .projects-kicker {
+    font-size: 0.76rem;
+    letter-spacing: 0.1em;
+  }
+
+  .projects-section .section-title {
+    font-size: 1.45rem;
+  }
+
+  .projects-subtitle {
+    font-size: 0.88rem;
+  }
+
+  .featured-project-card,
+  .secondary-project-card {
+    border-radius: 12px;
+  }
+
+  .featured-project-card {
+    padding: 0.75rem;
+  }
+
+  .featured-project-media {
+    min-height: 185px;
+    border-radius: 10px;
+  }
+
+  .featured-project-content h3,
+  .secondary-project-content h3 {
+    font-size: 1.05rem;
+  }
+
+  .featured-project-content p,
+  .secondary-project-content p {
+    font-size: 0.86rem;
+    line-height: 1.45;
+  }
+
+  .project-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .project-btn {
+    width: 100%;
+    text-align: center;
+    padding: 0.62rem 0.75rem;
+    font-size: 0.84rem;
+  }
+
+  .secondary-project-content {
+    padding: 0.75rem;
+  }
+}
+
+.projects-section {
+  scroll-margin-top: 6rem;
+}
+
+@media (max-width: 768px) {
+  .projects-section {
+    scroll-margin-top: 5.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .projects-section {
+    scroll-margin-top: 4.8rem;
+  }
+}
